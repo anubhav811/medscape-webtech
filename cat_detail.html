@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>
+        Details
+    </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link href="css/style.css?v=1" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="css/libs/responsive/responsive.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+    <!-- Header -->
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html">MedScape</a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medNav"
+                            aria-controls="medNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                                class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="medNav">
+                            <ul class="navbar-nav mr-auto" id="medMenu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html"> <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="mycart.php"></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="logout.php"></a>
+                                </li>
+                            </ul>
+
+
+                            <div class="med-signin-btn">
+
+
+                            </div>
+
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(images/medscape.jpg)"></div>
+    </br>
+
+    <div class="owl-carousel cat_items" style="display: flex;">
+
+    </div>
+
+    <footer class="med-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-md-flex align-items-center justify-content-between">
+                    <div class="footer-text">
+                        <p>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function viewDetail(elecid) {
+            console.log(elecid);
+            var url = new URL("http://localhost:5500/view_detail.html");
+            url.searchParams.set('elecid', elecid);
+            window.location = url;
+        }
+        function logout() {
+            params = new URL(window.location.href).searchParams
+            sessionStorage.setItem("userid", "");
+            window.location = "index.html";
+        }
+
+    </script>
+    <!-- ****** Footer Area End ****** -->
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/libs/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/libs/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/libs/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="js/active.js"></script>
+    <script src="js/cat_detail.js"></script>
+</body>
+
+
+</html>

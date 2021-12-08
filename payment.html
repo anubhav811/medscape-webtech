@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Checkout Page</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico">
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"
+        integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="js/payment.js"></script>
+
+</head>
+
+<body>
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html">MedScape</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medNav"
+                            aria-cntrols="medNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                                class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="medNav">
+                            <ul class="navbar-nav mr-auto" id="medMenu">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html"><span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown"> </li>
+                            </ul>
+                            <div class="med-signin-btn">
+
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(images/medscape.jpg)"></div>
+    </br>
+
+    <section class="section-content padding-y bg">
+        <div class="container">
+
+
+            <div class="row">
+                <main class="col-md-8">
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Contact info</h4>
+                            <form action="">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>First name</label>
+                                        <input type="text" placeholder="Type here" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Last name</label>
+                                        <input type="text" placeholder="Type here" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Phone</label>
+                                        <input type="text" value="+91" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Email</label>
+                                        <input type="email" placeholder="example@gmail.com" class="form-control">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </article>
+
+
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Delivery info</h4>
+                            <form action="">
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>City*</label>
+                                        <input type="text" placeholder="Type here" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Area*</label>
+                                        <input type="text" placeholder="Type here" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-8">
+                                        <label>Street*</label>
+                                        <input type="text" placeholder="Type here" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>Building</label>
+                                        <input type="text" placeholder="" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>House</label>
+                                        <input type="text" placeholder="Type here" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>Postal code</label>
+                                        <input type="text" placeholder="" class="form-control">
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </article>
+
+
+                    <article class="accordion" id="accordion_pay">
+
+                        <div class="card">
+                            <header class="card-header">
+                                <img src="images/payment-card.png" class="float-right" height="24">
+                                <label class="form-check" data-toggle="collapse" data-target="#pay_card">
+                                    <input class="form-check-input ml-auto " name="payment-option" type="radio"
+                                        value="option1">
+                                    <h6 class="form-check-label"> Credit Card </h6>
+                                </label>
+                            </header>
+                            <div id="pay_card" class="collapse" data-parent="#accordion_pay">
+                                <div class="card-body">
+                                    <p class="alert alert-success">Enter your card details here</p>
+                                    <form class="form-inline">
+                                        <input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx"
+                                            name="">
+                                        <input type="text" class="form-control mr-2" style="width: 100px"
+                                            placeholder="dd/yy" name="">
+                                        <input type="number" maxlength="3" class="form-control mr-2"
+                                            style="width: 100px" placeholder="cvc" name="">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <header class="card-header">
+                                <label class="form-check" data-toggle="collapse" data-target="#pay_card">
+                                    <input class="form-check-input ml-auto" name="payment-option" type="radio"
+                                        value="option2">
+                                    <h6 class="form-check-label"> Cash On Delivery </h6>
+                                </label>
+                            </header>
+                        </div>
+                    </article>
+
+                </main> <!-- col.// -->
+                <aside class="col-md-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="mb-3">Overview</h4>
+
+                            <hr>
+                            <dl class="dlist-align">
+                                <dt id="total_price">
+
+                                </dt>
+                            </dl>
+                            <hr>
+                            <p class="small mb-3 text-muted">By clicking you are agree with terms of condition </p>
+                            <a href="success.html" class="btn btn-primary btn-block"> Place order </a>
+
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    <footer class="med-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-md-flex align-items-center justify-content-between">
+                    <div class="footer-text">
+                        <p>
+                            Project by Anubhav,Atharva,Amol</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/libs/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/libs/bootstrap/popper.min.js"></script>
+    <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="js/libs/others/plugins.js"></script>
+    <script src="js/active.js"></script>
+</body>
+
+</html>

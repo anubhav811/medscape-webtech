@@ -1,0 +1,247 @@
+<html ng-app>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="icon" href="img/favicon.ico">
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<link href="css/register.css?v=1" rel="stylesheet">
+
+
+	<script>
+		$(function () {
+
+			$('#loginForm-link').click(function (e) {
+				$("#loginForm").delay(100).fadeIn(100);
+				$("#registerForm").fadeOut(100);
+				$('#registerForm-link').removeClass('active');
+				$(this).addClass('active');
+				e.preventDefault();
+			});
+			$('#registerForm-link').click(function (e) {
+				$("#registerForm").delay(100).fadeIn(100);
+				$("#loginForm").fadeOut(100);
+				$('#loginForm-link').removeClass('active');
+				$(this).addClass('active');
+				e.preventDefault();
+			});
+
+		});
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+
+
+</head>
+
+<body ng-app="">
+
+	<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(images/medscape.jpg)"></div>
+	</br>
+
+	<div class="sidenav">
+		<div class="login-main-text">
+			<h1>MedScape</h1>
+			<br>
+			<hr style="background-color: white; width:100%">
+
+			<h3>
+				<p>Login or register from here.</p>
+			</h3>
+		</div>
+	</div>
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-12 col-md-offset-3">
+					<div class="panel panel-login">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-xs-6">
+									<a href="#" class="active" id="loginForm-link">Login</a>
+								</div>
+								<div class="col-xs-6">
+									<a href="#" id="registerForm-link">Register</a>
+								</div>
+							</div>
+							<hr>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<form name="loginForm" id="loginForm" onsubmit="loginFunc()" novalidate>
+										<div class="form-group" style="display: block;">
+											<input type="email" ng-model="email" name="email" id="email"
+												class="form-control" placeholder="Email" autocomplete="off"
+												ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+											<span style="color: red;"
+												ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+												<span ng-show="loginForm.email.$error.required">Email is required</span>
+												<span
+													ng-show="loginForm.email.$dirty&& loginForm.email.$error.pattern">Please
+													Enter Valid Email</span>
+											</span>
+										</div>
+										<div class="form-group">
+											<input type="password" name="password" ng-model="password" id="password"
+												class="form-control" placeholder="Password" ng-model="password"
+												required>
+											<span style="color: red;"
+												ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+												<span
+													ng-show="loginForm.password.$dirty && loginForm.password.$error.required">Password
+													is Required</span>
+												<!-- <span
+													ng-show="loginForm.password.$dirty && loginForm.password.$error.minlength">Password
+													too
+													short</span>
+												<span
+													ng-show="loginForm.password.$dirty && loginForm.password.$error.maxlength">Password
+													too long</span> -->
+											</span>
+										</div>
+
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 col-sm-offset-3">
+													<input type="submit" name="login" id="login-submit"
+														class="form-control btn btn-login" value="Log In"
+														ng-disabled="loginForm.password.$dirty && loginForm.password.$invalid ||  loginForm.email.$dirty && loginForm.email.$invalid">
+												</div>
+											</div>
+										</div>
+
+									</form>
+									<form name="registerForm" id="registerForm" action="" onsubmit="signinFunc()"
+										role="form" style="display: none;">
+										<div class="form-group">
+											<input type="text" ng-model="name" name="name" id="username"
+												class="form-control" required placeholder="Username">
+											<span style="color: red;"
+												ng-show="registerForm.name.$dirty && registerForm.name.$invalid">
+												<span ng-show="registerForm.name.$error.required">This field is
+													required
+												</span>
+										</div>
+										<div class="form-group">
+											<input type="text" name="email" ng-model="email" id="email_s"
+												class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+												placeholder="Email Address" required>
+											<span style="color: red;"
+												ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+												<span ng-show="registerForm.email.$error.required">Email is
+													required</span>
+												<span
+													ng-show="registerForm.email.$dirty&& registerForm.email.$error.pattern">Please
+													Enter Valid Email</span>
+											</span>
+										</div>
+										<div class="form-group">
+											<input type="text" name="mobile" ng-model="mobile" id="mobile" required
+												class="form-control" placeholder="Mobile" ng-pattern="/[0-9]{10}/">
+											<span style="color: red;"
+												ng-show="registerForm.mobile.$dirty && registerForm.mobile.$invalid">
+												<span ng-show="registerForm.mobile.$error.required">Mobile is
+													required</span>
+												<span
+													ng-show="registerForm.mobile.$dirty&& registerForm.mobile.$error.pattern">Please
+													Enter Valid Mobile Number</span>
+											</span>
+										</div>
+										<div class="form-group">
+											<input type="password" name="password" ng-model="password" id="password_s"
+												class="form-control" placeholder="Password" ng-minlength="6"
+												ng-maxlength="12" required>
+											<span style="color: red;"
+												ng-show="registerForm.password.$dirty && registerForm.password.$invalid">
+												<span
+													ng-show="registerForm.password.$dirty && registerForm.password.$error.required">Password
+													is Required</span>
+												<span
+													ng-show="registerForm.password.$dirty && registerForm.password.$error.minlength">Password
+													too
+													short</span>
+												<span
+													ng-show="registerForm.password.$dirty && registerForm.password.$error.maxlength">Password
+													too long</span>
+											</span>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 col-sm-offset-3">
+													<input type="submit" name="register" id="register-submit"
+														class="form-control btn btn-register" value="Register Now"
+														ng-disabled="registerForm.password.$dirty && registerForm.password.$invalid ||  registerForm.email.$dirty && registerForm.email.$invalid ||
+														registerForm.mobile.$dirty && registerForm.mobile.$invalid ||
+														registerForm.name.$dirty && registerForm.name.$invalid">
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+
+		function loginFunc() {
+			event.preventDefault();
+
+			axios.post("http://localhost:3000/login", {
+				email: document.getElementById("email").value,
+				password: document.getElementById("password").value
+			}).then((response) => {
+				if (response.data == null) {
+					alert("Invalid Credentials");
+				}
+				var url = new URL("http://localhost:5500/index.html")
+				sessionStorage.setItem("userid", response.data['userid']);
+				url.searchParams.set('userid', response.data['userid']);
+
+				window.location.href = url;
+
+
+			}).catch((err) => {
+				console.log(err);
+			})
+		}
+		function signinFunc() {
+
+			event.preventDefault();
+			var new_user = Math.floor((Math.random() * 100) + 10);
+			axios.post("http://localhost:3000/signup", {
+				userid: new_user,
+				email: document.getElementById("email_s").value,
+				password: document.getElementById("password_s").value,
+				mobile: document.getElementById("mobile").value,
+				name: document.getElementById("username").value
+			}).then((response) => {
+				if (response.data == null) {
+					alert("Invalid Credentials");
+				}
+				console.log(JSON.stringify(response.data));
+				sessionStorage.setItem("userid", new_user);
+				var url = new URL("http://localhost:5500/index.html");
+				url.searchParams.set('userid', new_user);
+				window.location.href = url;
+
+			}).catch((err) => {
+				console.log(err);
+			})
+		}
+
+	</script>
+
+
+</body>
+
+</html>

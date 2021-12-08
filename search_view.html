@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Search Results</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="css/libs/responsive/responsive.css" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="med-load"></div>
+    </div>
+
+    <!-- ***** Search Form Area ***** -->
+    <div class="med-search-form d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <form action="#" method="get">
+                        <input type="search" name="caviarSearch" id="search"
+                            placeholder="Search Your Desire Destinations or Events">
+                        <input type="submit" class="d-none" value="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html">MedScape</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medNav"
+                            aria-cntrols="medNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                                class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="medNav">
+                            <ul class="navbar-nav mr-auto" id="medMenu">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html"><span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown"> </li>
+                            </ul>
+                            <div class="med-signin-btn">
+
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(images/medscape.jpg)"></div>
+    </br>
+
+    <div class="row">
+        <div class="col-lg-12 ">
+
+            <div class="row" style="margin-left:20px" id="result">
+
+
+
+
+            </div>
+
+        </div>
+    </div></br>
+
+
+    <footer class="med-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-md-flex align-items-center justify-content-between">
+                    <div class="footer-text">
+                        <p>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function logout() {
+            params = new URL(window.location.href).searchParams
+            sessionStorage.setItem("userid", "");
+            window.location = "index.html";
+        }
+        function viewDetail(elecid) {
+            var url = new URL("http://localhost:5500/view_detail.html");
+            url.searchParams.set('userid', sessionStorage.getItem('userid'));
+            url.searchParams.set('elecid', elecid);
+            window.location = url;
+        }
+    </script>
+    <!-- ****** Footer Area End ****** -->
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/libs/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/libs/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/libs/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="js/active.js"></script>
+    <script src="js/search_view.js"></script>
+</body>
+
+</html>
