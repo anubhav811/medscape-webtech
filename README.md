@@ -3,7 +3,7 @@
 In this website any client can browse freely the medicines but for ordering them the customer first needs to register. Details such as full name, email address, and contact number is taken at time of registration or we can enter the same during confirmation of the order. The details entered by the user are stored in the Database. 
 
 
-##Pages
+## Pages
 
 
 ![image](https://user-images.githubusercontent.com/71807967/157911900-078c90ca-5cdc-4df0-afcd-480cfe3b8c0d.png)
